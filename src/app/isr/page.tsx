@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { PokemonCard } from "@/components/pokemon-card";
 import { ExplanationCard } from "@/components/explanatio-card";
-import { getPokemonsISR } from "@/services/get-pokemons-isr";
+import { getBitcoinPrice } from "@/services/get-bitcoin-isr";
 
 export default async function ISRPage() {
-  const pokemons: PokemonDetails[] = await getPokemonsISR();
+  const bitcoinPrice = await getBitcoinPrice();
 
   return (
     <div className="min-h-screen bg-background">
@@ -51,15 +50,7 @@ export default async function ISRPage() {
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {pokemons.map((pokemon) => (
-              <PokemonCard
-                key={pokemon.id}
-                id={pokemon.id}
-                name={pokemon.name}
-                image={pokemon.sprites.other["official-artwork"].front_default}
-                types={pokemon.types.map((t) => t.type.name)}
-              />
-            ))}
+            {bitcoinPrice.last}
           </div>
         </div>
       </div>
