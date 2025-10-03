@@ -1,14 +1,15 @@
-import { IPokemon } from "@/app/@type/IPokemon";
-
-const getAllPokemons = async (): Promise<any> => {
-  const response = await fetch("http://localhost:3000/api/pokemons", {
+async function getPokemons() {
+  const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=12", {
     cache: "no-store",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
-  return data;
-};
+  })
+  const data = await res.json()
+  const pokemonDetails = await Promise.all(
+    data.results.map(async (pokemon: Pokemon) => {
+      const detailRes = await fetch(pokemon.url, { cache: "no-store" })
+      return detailRes.json()
+    }),
+  )
+  return pokemonDetails
+}
 
-export { getAllPokemons };
+export { getPokemons }

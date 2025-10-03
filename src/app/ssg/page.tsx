@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { PokemonCard } from "@/components/pokemon-card";
 import { ExplanationCard } from "@/components/explanatio-card";
-import { getPokemons } from "@/services/get-all-pokemons";
+import { getPokemonsSSG } from "@/services/get-pokemons-ssg";
 
-export default async function SSRPage() {
-  const pokemons: PokemonDetails[] = await getPokemons();
+export default async function SSGPage() {
+  const pokemons: PokemonDetails[] = await getPokemonsSSG();
 
   return (
     <div className="min-h-screen bg-background">
@@ -20,39 +20,39 @@ export default async function SSRPage() {
 
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">
-            SSR - Server-Side Rendering
+            SSG - Static Site Generation
           </h1>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="mb-8">
             <ExplanationCard
-              title="Server-Side Rendering (SSR)"
-              description="Os dados são buscados no servidor a cada requisição e o HTML é gerado dinamicamente."
+              title="Static Site Generation (SSG)"
+              description="A página é gerada uma vez durante o build e servida como HTML estático."
               howItWorks={[
-                "Usuário faz uma requisição para a página",
-                "Servidor busca os dados da API (PokéAPI)",
-                "Servidor renderiza o HTML completo com os dados",
-                "HTML pronto é enviado ao navegador",
-                "Página é exibida instantaneamente (já com dados)",
+                "Durante o build (npm run build)",
+                "Next.js busca os dados da API",
+                "Gera HTML estático com os dados",
+                "HTML é armazenado e servido via CDN",
+                "Todas as requisições recebem o mesmo HTML",
               ]}
               pros={[
-                "SEO excelente (conteúdo no HTML)",
-                "Dados sempre atualizados",
-                "Bom para conteúdo dinâmico",
-                "Primeira renderização rápida",
+                "Performance máxima (HTML estático)",
+                "SEO perfeito",
+                "Pode ser servido via CDN",
+                "Custo de servidor mínimo",
+                "Tempo de resposta instantâneo",
               ]}
               cons={[
-                "Latência do servidor",
-                "Carga no servidor a cada requisição",
-                "TTFB (Time to First Byte) maior",
-                "Custo de servidor mais alto",
+                "Dados podem ficar desatualizados",
+                "Build time aumenta com muitas páginas",
+                "Não serve para conteúdo dinâmico",
+                "Precisa rebuild para atualizar",
               ]}
             />
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
-            {pokemons.map((pokemon: PokemonDetails) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {pokemons.map((pokemon) => (
               <PokemonCard
                 key={pokemon.id}
                 id={pokemon.id}

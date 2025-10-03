@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Server, Monitor, FileCode, RefreshCw } from "lucide-react";
 
 const Page = () => {
   const renderingMethods = [
@@ -77,7 +76,6 @@ const Page = () => {
               );
             })}
           </div>
-
           <Card className="mt-12">
             <CardHeader>
               <CardTitle>Sobre este projeto</CardTitle>
