@@ -66,13 +66,13 @@ export default async function ISRPage() {
               "Requer configuração de tempo",
             ]}
             useCases={[
-              "Dashboards com dados que mudam frequentemente",
-              "Páginas de produtos com preços atualizados",
-              "Blogs com comentários recentes",
-              "Sites que precisam de bom SEO e dados atualizados",
+              "Páginas com dados que mudam regularmente",
+              "Blogs com comentários",
+              "Listas de produtos com estoque variável",
+              "Sites de notícias",
             ]}
           />
-          <Card>
+          <Card className="h-fit">
             <CardContent className="text-center h-full justify-center flex flex-col ">
               <div>
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-orange-500/10 rounded-full mb-4">
