@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { ExplanationCard } from "@/components/explanatio-card";
+import { ExplanationCard } from "@/components/explanation-card";
 import { getBitcoinPrice } from "@/services/get-bitcoin-isr";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -25,8 +25,24 @@ export default async function ISRPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <ExplanationCard
-            title="Incremental Static Regeneration (ISR)"
-            description="Combina o melhor de SSG e SSR: páginas estáticas que se atualizam automaticamente."
+            description={
+              <>
+                Veja como a página carregou quase instantaneamente, mas se você
+                esperar alguns segundos e recarregar, verá que o preço do
+                Bitcoin foi atualizado automaticamente! Isso é ISR (Incremental
+                Static Regeneration) em ação! 🚀
+                <br />
+                No ISR, a página é gerada estaticamente durante o build, mas com
+                um toque especial: ela pode ser atualizada em segundo plano após
+                um certo tempo (definido por você). Isso significa que você
+                obtém a performance do SSG, mas com dados que podem ser
+                atualizados regularmente.
+                <br />
+                👉 Dica: experimente desativar o JavaScript no navegador e
+                recarregar a página. Você verá que o conteúdo ainda aparece,
+                pois ele já vem todo montado!
+              </>
+            }
             howItWorks={[
               "Aqui foi quase que instantâneo para carregar, né?",
               "Isso acontece porque a página é gerada estaticamente no build",
@@ -48,6 +64,12 @@ export default async function ISRPage() {
               "Complexidade adicional",
               "Primeira requisição após revalidação é mais lenta",
               "Requer configuração de tempo",
+            ]}
+            useCases={[
+              "Dashboards com dados que mudam frequentemente",
+              "Páginas de produtos com preços atualizados",
+              "Blogs com comentários recentes",
+              "Sites que precisam de bom SEO e dados atualizados",
             ]}
           />
           <Card>

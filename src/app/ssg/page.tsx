@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { PokemonCard } from "@/components/pokemon-card";
-import { ExplanationCard } from "@/components/explanatio-card";
+import { ExplanationCard } from "@/components/explanation-card";
 import { getPokemonsSSG } from "@/services/get-pokemons-ssg";
 
 export default async function SSGPage() {
@@ -27,11 +27,23 @@ export default async function SSGPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="mb-8">
             <ExplanationCard
-              title="Static Site Generation (SSG)"
-              description="A página é gerada uma vez durante o build e servida como HTML estático."
+              description={
+                <>
+                  Percebeu que a página carregou instantaneamente, sem nenhum
+                  atraso? Isso é SSG (Static Site Generation) em ação! 🚀
+                  <br />
+                  No SSG, as páginas são pré-geradas durante o processo de build
+                  do site. Isso significa que o HTML já vem prontinho para ser
+                  exibido assim que você acessa a página, garantindo uma
+                  performance incrível.
+                  <br />
+                  👉 Dica: experimente desativar o JavaScript no navegador e
+                  recarregar a página. Você verá que o conteúdo ainda aparece,
+                  pois ele já vem todo montado !
+                </>
+              }
               howItWorks={[
-                "Aqui foi quase que instantâneo para carregar, né?",
-                "Isso acontece porque a página foi gerada durante o build",
+                "Página gerada durante o build",
                 "Next.js busca os dados da API",
                 "Gera HTML estático com os dados",
                 "HTML é armazenado",
@@ -49,6 +61,13 @@ export default async function SSGPage() {
                 "Build time aumenta com muitas páginas",
                 "Não serve para conteúdo dinâmico",
                 "Precisa rebuild para atualizar",
+              ]}
+              useCases={[
+                "Blogs e sites institucionais",
+                "Portfólios",
+                "Documentação",
+                "Landing pages",
+                "Sites com pouco conteúdo dinâmico",
               ]}
             />
           </div>

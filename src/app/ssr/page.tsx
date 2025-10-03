@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { PokemonCard } from "@/components/pokemon-card";
-import { ExplanationCard } from "@/components/explanatio-card";
+import { ExplanationCard } from "@/components/explanation-card";
 import { getPokemons } from "@/services/get-all-pokemons";
 
 export default async function SSRPage() {
-  const pokemons: PokemonDetails[] = await getPokemons();
+  const pokemons: PokemonDetails[] = await getPokemons({ isSSR: true });
 
   return (
     <div className="min-h-screen bg-background">
@@ -27,11 +27,24 @@ export default async function SSRPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="mb-8">
             <ExplanationCard
-              title="Server-Side Rendering (SSR)"
-              description="Os dados são buscados no servidor a cada requisição e o HTML é gerado dinamicamente."
+              description={
+                <>
+                  Observe que houve um pequeno atraso ao redirecionar para esta
+                  página, mas assim que ela carregou, todos os Pokémons
+                  apareceram instantaneamente! Isso é SSR em ação. 🚀
+                  <br />
+                  No SSR, quando você acessa a página, o servidor busca os dados
+                  necessários, monta o HTML completo e só então envia tudo para
+                  o seu navegador. Isso significa que você vê o conteúdo
+                  prontinho para ser exibido assim que a página carrega.
+                  <br />
+                  👉 Dica: experimente desativar o JavaScript no navegador e
+                  recarregar a página. Você verá que o conteúdo ainda aparece,
+                  pois ele já vem todo montado do servidor.
+                </>
+              }
               howItWorks={[
-                "Demorou um pouco para redirecionar, né?",
-                "Isso acontece porque o usuário faz uma requisição para a página",
+                "Usuário faz uma requisição para a página",
                 "Servidor busca os dados da API (PokéAPI)",
                 "Servidor renderiza o HTML completo com os dados",
                 "HTML pronto é enviado ao navegador",
@@ -48,6 +61,12 @@ export default async function SSRPage() {
                 "Carga no servidor a cada requisição",
                 "TTFB (Time to First Byte) maior",
                 "Custo de servidor mais alto",
+              ]}
+              useCases={[
+                "Blogs e sites de notícias",
+                "Dashboards com dados em tempo real",
+                "Páginas que dependem de autenticação",
+                "Sites que precisam de bom SEO",
               ]}
             />
           </div>
