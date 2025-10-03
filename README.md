@@ -83,17 +83,17 @@ Siga os passos abaixo para rodar o projeto em seu ambiente de desenvolvimento:
 
 Clone o repositório:
 
-<pre> ```bash https://github.com/mateusfj/next-render-showcase.git``` </pre>
+<pre>https://github.com/mateusfj/next-render-showcase.git</pre>
 
 Navegue até a pasta do projeto:
 
-<pre> ```bash cd next-render-showcase``` </pre>
+<pre>cd next-render-showcase</pre>
 
 Instale as dependências:
 
 Bash
 
-<pre> ```bash npm install``` </pre>
+<pre>bash npm install</pre>
 
 Inicie o servidor de desenvolvimento:
 
