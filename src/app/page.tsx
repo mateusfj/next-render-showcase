@@ -1,74 +1,103 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Server, Monitor, FileCode, RefreshCw } from "lucide-react";
 
-export default function Home() {
+const Page = () => {
+  const renderingMethods = [
+    {
+      title: "SSR",
+      description: "Server-Side Rendering",
+      href: "/ssr",
+      color: "text-blue-400",
+      details: "Renderizado no servidor a cada requisição",
+    },
+    {
+      title: "CSR",
+      description: "Client-Side Rendering",
+      href: "/csr",
+      color: "text-green-400",
+      details: "Renderizado no navegador do cliente",
+    },
+    {
+      title: "SSG",
+      description: "Static Site Generation",
+      href: "/ssg",
+      color: "text-yellow-400",
+      details: "Gerado estaticamente no build",
+    },
+    {
+      title: "ISR",
+      description: "Incremental Static Regeneration",
+      href: "/isr",
+      color: "text-purple-400",
+      details: "Regeneração estática incremental",
+    },
+  ] as const;
+
   return (
-    <div className="min-h-screen bg-background w-full justify-items-center px-4">
-      <div className="h-screen w-full flex flex-col justify-center items-center gap-4">
-        <h1 className="text-2xl font-bold">Next.js Rendering Methods</h1>
-        <p>
-          Explore os diferentes métodos de renderização do Next.js usando a
-          PokéAPI
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-          <Card>
-            <CardContent>
-              <h2 className="text-xl font-semibold mb-2">
-                Static Generation (SSG)
-              </h2>
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-5xl font-bold mb-4 text-balance">
+              Next.js Rendering Methods
+            </h1>
+            <p className="text-xl text-muted-foreground text-balance">
+              Explore os diferentes métodos de renderização do Next.js usando a
+              PokéAPI
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {renderingMethods.map((method) => {
+              return (
+                <Link key={method.href} href={method.href}>
+                  <Card className="h-full transition-all cursor-pointer shadow-none hover:shadow-lg rounded-md">
+                    <CardHeader>
+                      <CardTitle className="text-2xl">{method.title}</CardTitle>
+                      <CardDescription className="text-base">
+                        {method.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        {method.details}
+                      </p>
+                      <Button>Ver Demonstração</Button>
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
+          </div>
+
+          <Card className="mt-12">
+            <CardHeader>
+              <CardTitle>Sobre este projeto</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
               <p>
-                Dados são buscados em tempo de build. Ideal para conteúdo que
-                não muda frequentemente.
+                Esta aplicação demonstra os 4 principais métodos de renderização
+                do Next.js, cada um buscando dados da PokéAPI de forma
+                diferente.
               </p>
-              <Button variant="default" className="mt-4">
-                Ver Exemplo
-              </Button>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent>
-              <h2 className="text-xl font-semibold mb-2">
-                Server-Side Rendering (SSR)
-              </h2>
               <p>
-                Dados são buscados a cada requisição. Útil para conteúdo que
-                muda frequentemente.
+                Clique em qualquer card acima para ver como cada método funciona
+                na prática, com explicações detalhadas e exemplos de código.
               </p>
-              <Button variant="default" className="mt-4">
-                Ver Exemplo
-              </Button>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent>
-              <h2 className="text-xl font-semibold mb-2">
-                Client-Side Rendering (CSR)
-              </h2>
-              <p>
-                Dados são buscados no lado do cliente após o carregamento
-                inicial. Bom para interatividade.
-              </p>
-              <Button variant="default" className="mt-4">
-                Ver Exemplo
-              </Button>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent>
-              <h2 className="text-xl font-semibold mb-2">
-                Incremental Static Regeneration (ISR)
-              </h2>
-              <p>
-                Combina SSG com atualizações periódicas. Permite conteúdo
-                estático atualizado.
-              </p>
-              <Button variant="default" className="mt-4">
-                Ver Exemplo
-              </Button>
             </CardContent>
           </Card>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Page;
