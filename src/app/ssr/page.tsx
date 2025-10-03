@@ -30,7 +30,8 @@ export default async function SSRPage() {
               title="Server-Side Rendering (SSR)"
               description="Os dados são buscados no servidor a cada requisição e o HTML é gerado dinamicamente."
               howItWorks={[
-                "Usuário faz uma requisição para a página",
+                "Demorou um pouco para redirecionar, né?",
+                "Isso acontece porque o usuário faz uma requisição para a página",
                 "Servidor busca os dados da API (PokéAPI)",
                 "Servidor renderiza o HTML completo com os dados",
                 "HTML pronto é enviado ao navegador",

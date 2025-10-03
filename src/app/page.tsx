@@ -87,8 +87,22 @@ const Page = () => {
                 diferente.
               </p>
               <p>
-                Clique em qualquer card acima para ver como cada método funciona
-                na prática, com explicações detalhadas e exemplos de código.
+                Para uma melhor experiência e para testar como cada método
+                funciona na prática, sugiro que altere a velocidade da sua rede
+                para 3G ou 4G nas DevTools do navegador. Dessa forma, você
+                consegue perceber com mais clareza as diferenças de performance
+                e a experiência do usuário.
+              </p>
+              <p>
+                O código fonte está disponível no{" "}
+                <a
+                  href="https://github.com/mateusfj/next-render-showcase"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-foreground"
+                >
+                  GitHub
+                </a>
               </p>
             </CardContent>
           </Card>

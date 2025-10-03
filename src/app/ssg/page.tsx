@@ -30,10 +30,11 @@ export default async function SSGPage() {
               title="Static Site Generation (SSG)"
               description="A página é gerada uma vez durante o build e servida como HTML estático."
               howItWorks={[
-                "Durante o build (npm run build)",
+                "Aqui foi quase que instantâneo para carregar, né?",
+                "Isso acontece porque a página foi gerada durante o build",
                 "Next.js busca os dados da API",
                 "Gera HTML estático com os dados",
-                "HTML é armazenado e servido via CDN",
+                "HTML é armazenado",
                 "Todas as requisições recebem o mesmo HTML",
               ]}
               pros={[

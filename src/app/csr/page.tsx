@@ -3,20 +3,18 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { PokemonCard } from "@/components/pokemon-card";
 import { ExplanationCard } from "@/components/explanatio-card";
 import { getPokemons } from "@/services/get-all-pokemons";
 
 export default function CSRPage() {
   const [pokemons, setPokemons] = useState<PokemonDetails[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchPokemons() {
       const pokemonDetails = await getPokemons();
       setPokemons(pokemonDetails);
-      setLoading(false);
     }
     fetchPokemons();
   }, []);
@@ -41,7 +39,9 @@ export default function CSRPage() {
               title="Client-Side Rendering (CSR)"
               description="Os dados são buscados no navegador após a página carregar, usando JavaScript."
               howItWorks={[
-                "Servidor envia HTML vazio (apenas estrutura)",
+                "Aqui carregou mais rápido, né?",
+                "Mas percebeu que a lista de pokemons demorou um pouco para aparecer",
+                "Isso acontece porque o servidor envia HTML vazio (apenas estrutura)",
                 "JavaScript é baixado e executado no navegador",
                 "useEffect dispara a busca de dados da API",
                 "Dados são recebidos e estado é atualizado",
@@ -62,26 +62,19 @@ export default function CSRPage() {
             />
           </div>
           <div>
-            {loading ? (
-              <div className="flex flex-col items-center justify-center py-20">
-                <Loader2 className="w-12 h-12 animate-spin text-accent mb-4" />
-                <p className="text-muted-foreground">carregado...</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-4">
-                {pokemons.map((pokemon) => (
-                  <PokemonCard
-                    key={pokemon.id}
-                    id={pokemon.id}
-                    name={pokemon.name}
-                    image={
-                      pokemon.sprites.other["official-artwork"].front_default
-                    }
-                    types={pokemon.types.map((t) => t.type.name)}
-                  />
-                ))}
-              </div>
-            )}
+            <div className="grid grid-cols-2 gap-4">
+              {pokemons.map((pokemon) => (
+                <PokemonCard
+                  key={pokemon.id}
+                  id={pokemon.id}
+                  name={pokemon.name}
+                  image={
+                    pokemon.sprites.other["official-artwork"].front_default
+                  }
+                  types={pokemon.types.map((t) => t.type.name)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
